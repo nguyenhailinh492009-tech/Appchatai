@@ -1,4 +1,125 @@
 
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Roleplay Studio - Angel Edition</title>
+    <style>
+        :root {
+            --bg-main: #e0decd; /* Angel Milk */
+            --bg-chat: #f5f4ed; 
+            --accent-blue: #8690a2; /* Blue Veil */
+            --accent-gold: #d2c296; 
+            --text-main: #ab9b8e; /* Cloud Cocoa */
+            --user-bubble: #ab9b8e;
+            --bot-bubble: #ffffff;
+        }
+
+        body, html {
+            margin: 0; padding: 0; height: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+        }
+
+        /* Header giống AI Studio */
+        .header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 20px; background: rgba(224, 222, 205, 0.8);
+            backdrop-filter: blur(10px); border-bottom: 1px solid rgba(171, 155, 142, 0.2);
+        }
+
+        .header-title { text-align: center; flex-grow: 1; }
+        .header-title h1 { margin: 0; font-size: 16px; letter-spacing: 1px; color: var(--text-main); }
+        .header-title span { font-size: 10px; color: #ff4757; font-weight: bold; }
+
+        /* Vùng chat */
+        .chat-container {
+            height: calc(100vh - 140px); overflow-y: auto;
+            padding: 20px; display: flex; flex-direction: column; gap: 20px;
+        }
+
+        .msg { max-width: 85%; line-height: 1.6; font-size: 15px; position: relative; }
+        
+        /* Tin nhắn Bot (Giống trong hình cậu gửi) */
+        .bot-msg { align-self: flex-start; color: #333; padding-left: 10px; border-left: 3px solid #ff4757; }
+
+        /* Tin nhắn User */
+        .user-msg { 
+            align-self: flex-end; background: var(--user-bubble); 
+            color: white; padding: 12px 18px; border-radius: 20px 20px 0 20px;
+            box-shadow: 0 4px 15px rgba(171, 155, 142, 0.2);
+        }
+
+        /* Thanh nhập liệu bo tròn đúng chuẩn */
+        .input-area {
+            position: fixed; bottom: 20px; left: 0; right: 0;
+            padding: 0 15px; display: flex; align-items: center; gap: 10px;
+        }
+
+        .input-wrapper {
+            flex-grow: 1; background: #1a1a1a; border-radius: 25px;
+            display: flex; align-items: center; padding: 5px 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .plus-btn { color: var(--accent-blue); font-size: 24px; cursor: pointer; padding-right: 10px; }
+
+        input {
+            flex-grow: 1; background: transparent; border: none;
+            color: white; padding: 12px 5px; outline: none; font-size: 15px;
+        }
+
+        .send-btn { color: #8e44ad; font-size: 20px; cursor: pointer; transform: rotate(-15deg); }
+
+        /* Icon cài đặt góc phải */
+        .settings-icon { font-size: 20px; color: var(--text-main); cursor: pointer; }
+
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div style="width: 20px;">❮</div>
+        <div class="header-title">
+            <h1>Hiên viên hạ</h1>
+            <span>ONLINE</span>
+        </div>
+        <div class="settings-icon">⚙️</div>
+    </div>
+
+    <div class="chat-container" id="chatBox">
+        <div class="msg bot-msg">
+            "Thế gian này, có những thứ không thể cứu vãn, cũ
+        </div>
+    </div>
+
+    <div class="input-area">
+        <div class="plus-btn">⊕</div>
+        <div class="input-wrapper">
+            <input type="text" id="userInput" placeholder="Nhập tin nhắn...">
+            <div class="send-btn" onclick="send()">➤</div>
+        </div>
+    </div>
+
+    <script>
+        function send() {
+            const input = document.getElementById('userInput');
+            const box = document.getElementById('chatBox');
+            if(input.value.trim() == "") return;
+
+            const userDiv = document.createElement('div');
+            userDiv.className = 'msg user-msg';
+            userDiv.innerText = input.value;
+            box.appendChild(userDiv);
+            
+            input.value = "";
+            box.scrollTop = box.scrollHeight;
+        }
+    </script>
+</body>
+</html>
 
 
 <div id="chat-box" style="display:flex; flex-direction:column-reverse; overflow-y:auto; padding:15px;"><div id="typing-indicator" class="typing-indicator">
